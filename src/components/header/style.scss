@@ -1,0 +1,197 @@
+@import "../../mixins.scss";
+
+.header {
+  position: fixed;
+  transform: translateY(0);
+  width: 100%;
+  height: 60px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  transition: all ease 0.4s;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  &.top {
+    background: radial-gradient(circle at top left, rgba(255, 75, 139, 0.18), transparent 55%),
+      rgba(5, 5, 9, 0.82);
+  }
+  &.show {
+    background: linear-gradient(
+      120deg,
+      rgba(5, 5, 9, 0.98),
+      rgba(9, 10, 25, 0.98)
+    );
+  }
+  &.hide {
+    transform: translateY(-60px);
+  }
+
+  .contentWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 14px;
+    .logoImg {
+      width: 34px;
+      height: 34px;
+      filter: drop-shadow(0 0 14px rgba(0, 224, 255, 0.55));
+    }
+    .logo-text {
+      position: relative;
+      top: 1px;
+    }
+  }
+  .menuItems {
+    list-style-type: none;
+    display: none;
+    align-items: center;
+    @include md {
+      display: flex;
+    }
+    .menuItem {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      margin: 0 15px;
+      color: white;
+      font-weight: 500;
+      position: relative;
+      &.searchIcon {
+        margin-right: 0;
+      }
+      svg {
+        font-size: 18px;
+      }
+      cursor: pointer;
+      &:hover {
+        color: var(--pink);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  .mobileMenuItems {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    @include md {
+      display: none;
+    }
+    svg {
+      font-size: 18px;
+      color: white;
+    }
+  }
+
+  &.mobileView {
+    background: var(--black3);
+    .menuItems {
+      display: flex;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      background: var(--black3);
+      flex-direction: column;
+      width: 100%;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      animation: mobileMenu 0.3s ease forwards;
+      .menuItem {
+        font-size: 20px;
+        width: 100%;
+        height: auto;
+        padding: 15px 20px;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        &:last-child {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .searchBar {
+    width: 100%;
+    height: 60px;
+    background: rgba(5, 5, 9, 0.92);
+    position: absolute;
+    top: 60px;
+    animation: mobileMenu 0.3s ease forwards;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    .searchInput {
+      display: flex;
+      align-items: center;
+      height: 40px;
+      margin-top: 10px;
+      width: 100%;
+      svg {
+        font-size: 20px;
+        flex-shrink: 0;
+        margin-left: 10px;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.85);
+        &:hover {
+          color: #fff;
+        }
+      }
+      input {
+        width: 100%;
+        height: 50px;
+        background-color: rgba(18, 18, 27, 0.95);
+        outline: 0;
+        border: 0;
+        border-radius: 30px 0 0 30px;
+        padding: 0 15px;
+        font-size: 14px;
+        color: #fff;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+        @include md {
+          height: 60px;
+          font-size: 20px;
+          padding: 0 30px;
+        }
+      }
+    }
+  }
+
+  .searchOverlay {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 60px);
+    background: rgba(0, 0, 0, 0.55);
+    animation: fadeIn 0.2s ease forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mobileMenu {
+  0% {
+    transform: translateY(-130%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

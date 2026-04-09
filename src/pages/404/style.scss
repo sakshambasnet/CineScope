@@ -1,0 +1,70 @@
+@import "../../mixins.scss";
+
+.notFoundPage {
+  min-height: 100vh;
+  padding-top: 120px;
+  padding-bottom: 80px;
+  background: radial-gradient(circle at top left, rgba(255, 75, 139, 0.08), transparent 55%),
+    var(--black);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  .contentWrapper {
+    max-width: 720px;
+    text-align: center;
+    animation: fadeUp 0.35s ease both;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: rgba(245, 245, 247, 0.9);
+    letter-spacing: 0.22em;
+    font-weight: 800;
+    margin-bottom: 18px;
+  }
+
+  .title {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    margin-bottom: 10px;
+    background-image: var(--gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 22px;
+    @include md {
+      font-size: 18px;
+      line-height: 26px;
+    }
+  }
+
+  .cta {
+    padding: 12px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 224, 255, 0.25);
+    background: var(--surface2);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    &:hover {
+      transform: translateY(-1px);
+      border-color: rgba(0, 224, 255, 0.45);
+      box-shadow: 0 0 40px rgba(0, 224, 255, 0.12);
+    }
+  }
+}
+
